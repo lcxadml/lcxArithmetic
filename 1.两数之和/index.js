@@ -27,13 +27,24 @@ const twoSum2 = (nums, target) => {
     j = nums.length - 1;
   const nums1 = [...nums];
   nums1.sort((a, b) => a - b);
-  while (nums1[i] + nums1[j] !== target) {
+  // while (nums1[i] + nums1[j] !== target) {
+  //   if (nums1[i] + nums1[j] > target) {
+  //     j--;
+  //   } else {
+  //     i++;
+  //   }
+  // }
+
+  for (; nums1[i] + nums1[j] !== target; ) {
     if (nums1[i] + nums1[j] > target) {
       j--;
     } else {
       i++;
     }
+
   }
+
+
   return [
     nums.findIndex((item) => item === nums1[i]),
     nums.findLastIndex((item) => item === nums1[j]),
