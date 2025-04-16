@@ -1,4 +1,5 @@
-const nums = [-1, 0, 1, 2, -1, -4];
+const nums =
+[2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10]
 
 // 解题思路
 // 固定一个数，，，三数之和就降级为两数之和了
@@ -34,3 +35,31 @@ const threeSum = function (nums) {
   }
   return result;
 };
+
+const threeSum1 = function (nums) {
+  const resArr = [];
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    const finNum = -nums[i];
+    let j = i + 1,
+      k = nums.length - 1;
+    while (j < k) {
+      if (nums[j] + nums[k] === finNum) {
+        resArr.push([nums[i], nums[j], nums[k]]);
+        j++;
+        while (nums[j] === nums[j - 1]) j++;
+        k--;
+        while (nums[k] === nums[k + 1]) k--;
+      } else if (nums[j] + nums[k] < finNum) {
+        j++;
+        while (nums[j] === nums[j - 1]) j++;
+      } else {
+        k--;
+        while (nums[k] === nums[k + 1]) k--;
+      }
+    }
+  }
+  return resArr;
+};
+console.log(threeSum1(nums));
